@@ -12,19 +12,13 @@ int main() {
         cin >> arr[i];
     }
 
-    int hash[13] = {0};
-    for (int i = 0; i < n; i++) {
-        hash[arr[i]] += 1;
+    map<int,int> mp;
+    for (int i =0; i<n;i++){
+        mp[arr[i]]++;
     }
 
-    cout<<"How many elements you you want to search";
-    int q;
-    cin >> q;
-    cout<<"Enter elements you want to search";
-    while (q--) {
-        int number;
-        cin >> number;
-        cout << hash[number] << endl;
+    for (auto it: mp){
+        cout<<it.first<<" -> "<<it.second<<endl;
     }
     return 0;
 }
