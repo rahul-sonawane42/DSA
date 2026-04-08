@@ -8,12 +8,12 @@ int seclarge(int arr[], int len){
     int secmax = INT_MIN;
     int maxel = INT_MIN;
 
-    for (int i=0; i<len; i++){
+    for (int i=0; i<len; i++){  
         if (arr[i]>maxel){
             secmax = maxel;
             maxel = arr[i];
         }
-        else if (arr[i]<maxel && arr[i] != maxel){
+        else if (arr[i]>secmax && arr[i] != maxel){
             secmax = arr[i];
         }
     }
