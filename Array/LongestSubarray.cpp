@@ -9,24 +9,18 @@ void longsubarr(int arr[], int n, int k){
     int start;
     int cstart;
 
-    for (int i = 0; i<n; i++){
+    for (int i =0; i< n; i++){
         cstart = i;
-        while (sum<k && i<n){
-            sum+=arr[i];
+        for (int j = i; j<n; j++){
+            sum+=arr[j];
             curr_len++;
-            i++;
+            if (sum == k && curr_len>max_len){
+                max_len = curr_len;
+                start = cstart;
+            }
         }
-        if (sum == k && curr_len > max_len){
-            max_len = curr_len;
-            start = cstart;
-            sum = 0;
-            curr_len = 0;
-            i = cstart;
-        } else {
-            sum = 0;
-            curr_len = 0;
-            i = cstart;
-        }
+        curr_len = 0;
+        sum = 0;
     }
 
     cout<< "Max len: " << max_len <<"\n";
