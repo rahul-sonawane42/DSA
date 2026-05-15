@@ -12,7 +12,7 @@ void findMaj(int arr[], int n){
                 count++;
             }
         }
-        if (count >= thres && !(find(nums.begin(),nums.end(),arr[i]) != nums.end())){
+        if (count > thres && !(find(nums.begin(),nums.end(),arr[i]) != nums.end())){
             nums.push_back(arr[i]);
         }
         count = 1;
@@ -29,7 +29,7 @@ void findMaj(int arr[], int n){
 }
 
 int main() {
-    int arr[] = {1, 2, 1, 1, 3, 2, 2, 3, 3};
+    int arr[] = {1, 2, 1, 1, 3, 2, 2};
     int n = sizeof(arr)/sizeof(int);
 
     findMaj(arr,n);
