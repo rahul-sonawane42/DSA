@@ -47,7 +47,7 @@ void optimisedthreesum(int arr[], int n){
                 right--;
 
                 while (left<right && arr[left] == arr[left-1]) left++;
-                while (left<right && arr[right] == arr[right-1]) right--;
+                while (left<right && arr[right] == arr[right+1]) right--;
             } else if (curr_sum < 0){
                 left++;
             } else{
