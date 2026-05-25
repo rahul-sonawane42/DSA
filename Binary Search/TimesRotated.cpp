@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int minelem(int arr[], int n){
+int timerot(int arr[], int n){
     int s = 0;
     int e = n-1;
 
@@ -15,12 +15,12 @@ int minelem(int arr[], int n){
             e = m;
         }
     }
-    return arr[s];
+    return s;
 }
 
 int main() {
     int arr[] = {4,5,6,7,0,1,2,3};
     int n = sizeof(arr)/sizeof(int);
-    cout << "Min Element: " << minelem(arr,n) << endl;
+    cout << "Num of times the array is rotated: " << timerot(arr,n) << endl;
     return 0;
 }
