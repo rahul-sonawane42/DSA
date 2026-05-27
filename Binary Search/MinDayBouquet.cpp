@@ -2,18 +2,27 @@
 
 using namespace std;
 
-int calcflowers(int arr[], int n, int k){
-    int total = 0;
+int calcbouquets(int arr[], int n, int num, int m, int k){
+    int bouquet = 0;
+    int cons = 0;
     for (int i = 0; i<n; i++){
-        if (arr[i] <= k){
-            total++;
-        }
+        if (arr[i] <= num){
+            cons++;
+
+            if (cons == k){
+                bouquet++;
+                cons = 0;
+            }
+        } else {
+            cons = 0;
+        } 
     }
-    return total;
+    return bouquet;
 }
 
-int mindays(int arr[], int n, int h){
+int mindays(int arr[], int n, int m, int k){
     int maxel = *max_element(arr, arr+n);
+    int h = m*k;
     int s = 1;
     int e = maxel;
     int mink = maxel;
@@ -23,13 +32,13 @@ int mindays(int arr[], int n, int h){
     }
 
     while (s<=e){
-        int m = s + (e-s)/2;
-        int tot = calcflowers(arr, n, m);
-        if (tot >= h){
-            mink = m;
-            e = m-1;
+        int mid = s + (e-s)/2;
+        int tot = calcbouquets(arr, n, mid, m, k);
+        if (tot >= m){
+            mink = mid;
+            e = mid-1;
         } else {
-            s = m+1;
+            s = mid+1;
         }
     }
     return mink;
@@ -40,6 +49,6 @@ int main() {
     int n = sizeof(arr)/sizeof(int);
     int m = 2;
     int k = 3;
-    cout << "Minimum number of days: " << mindays(arr, n, m*k) << endl;
+    cout << "Minimum number of days: " << mindays(arr, n, m, k) << endl;
     return 0;
 }
