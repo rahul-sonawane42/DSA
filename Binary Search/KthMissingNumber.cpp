@@ -2,20 +2,21 @@
 using namespace std;
 
 int missingK(vector<int> vec, int n, int k) {
-    int low = 0, high = n - 1;
+    int s = 0;
+    int e = n - 1;
 
-    while (low <= high) {
-        int mid = (low + high) / 2;
+    while (s <= e) {
+        int mid = (s + e) / 2;
 
         int missing = vec[mid] - (mid + 1);
 
         if (missing < k) {
-            low = mid + 1;
+            s = mid + 1;
         } else {
-            high = mid - 1; 
+            e = mid - 1; 
         }
     }
-    return k + high + 1;
+    return k + e + 1;
 }
 
 int main() {
