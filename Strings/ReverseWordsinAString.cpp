@@ -31,7 +31,7 @@ string reverseWords(string s){
 }
 
 int main() {
-    string s = " amazing coding skills ";
+    string s = " Hello World Reverse ";
     cout << reverseWords(s) << endl;
     return 0;
 }
