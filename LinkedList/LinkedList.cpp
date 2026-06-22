@@ -2,18 +2,19 @@
 
 using namespace std;
 
-class Node{
-    public:
-        int data;
-        Node* next;
+struct Node{
+    
+    int data;
+    Node* next;
 
-    Node(int data1, Node* next1){
-        data = data1;
-        next = next1;
+    Node(int val){
+        data = val;
+        next = NULL;
     }
-    Node(int data1){
-        data = data1;
-        next = nullptr;
+
+    Node(int val, Node* n){
+        data = val;
+        next = n;
     }
 };
 
@@ -24,9 +25,24 @@ class Solution{
             return newNode;
         }
 
+        Node* deleteLast(Node* head){
+            if (head == NULL || head->next == NULL){
+                delete head;
+                return NULL;
+            }
+            Node* temp = head;
+            while (temp->next->next != NULL){
+                temp = temp->next;
+            }
+            delete temp->next;
+            temp->next = NULL;
+
+            return head;
+        }
+
         void printList(Node* head){
             Node* temp = head;
-            while (temp != nullptr){
+            while (temp != NULL){
                 cout << temp->data << " -> ";
                 temp = temp->next;
             }
@@ -46,6 +62,10 @@ int main() {
     head = sol.insertAtHead(head,2);
 
     cout << "After Insertion" << endl;
+    sol.printList(head);
+
+    head = sol.deleteLast(head);
+    cout << "After Deletion" << endl;
     sol.printList(head);
 
     return 0;
