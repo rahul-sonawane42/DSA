@@ -1,12 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Node {
-public:
+struct Node {
     int data;
-
     Node* next;
-
     Node* prev;
 
     Node(int data1, Node* next1, Node* prev1) {
@@ -17,18 +14,51 @@ public:
 
     Node(int data1) {
         data = data1;
-        next = nullptr;
-        prev = nullptr;
+        next = NULL;
+        prev = NULL;
     }
 };
 
+class Solution {
+    public:
+        Node* insertAtEnd(Node* head, int newData){
+            Node* newNode = new Node(newData);    
+            if (head == NULL){
+                head = newNode;
+                return head;
+            }
+            Node* temp = head;
+            while (temp->next != NULL){
+                temp = temp->next;
+            }
+            temp-> next = newNode;
+            newNode-> prev = temp;
+            return head;
+        }
+        void printList(Node* head){
+            Node* temp = head;
+            while (temp != NULL){
+                cout << temp->data << " -> ";
+                temp = temp->next;
+            }
+            cout << "NULL" << endl;
+        }
+};
+
 int main() {
-    vector<int> arr = {2, 5, 8, 7};
+    Solution sol;
 
-    Node* head = new Node(arr[0]);
+    Node* head = new Node(5);
+    cout << "------------------------------------------" << endl;
+    
+    cout << "Original List" << endl;
+    sol.printList(head);
 
-    cout << head << '\n';
-    cout << head->data << '\n';
+    sol.insertAtEnd(head,2);
+    cout << "------------------------------------------" << endl;
+    
+    cout << "After Insertion" << endl;
+    sol.printList(head);
 
     return 0;
 }
