@@ -49,6 +49,17 @@ class Solution {
             return head;
         }
 
+        Node* reverseDL(Node* head){
+            if (head == nullptr || head->next == nullptr) return head;
+            Node* temp = head;
+            while (temp != NULL){
+                swap(temp->next, temp->prev);
+                head = temp;
+                temp = temp->prev;
+            }
+            return head;
+        }
+
         void printList(Node* head){
             Node* temp = head;
             while (temp != NULL){
@@ -68,19 +79,24 @@ int main() {
     cout << "Original List" << endl;
     sol.printList(head);
 
-    sol.insertAtEnd(head,2);
-    sol.insertAtEnd(head,3);
-    sol.insertAtEnd(head,4);
+    head = sol.insertAtEnd(head,2);
+    head = sol.insertAtEnd(head,3);
+    head = sol.insertAtEnd(head,4);
     cout << "------------------------------------------" << endl;
     
     cout << "After Insertion" << endl;
     sol.printList(head);
 
-    sol.deleteLast(head);
+    head = sol.deleteLast(head);
     cout << "------------------------------------------" << endl;
     
     cout << "After Deletion" << endl;
     sol.printList(head);
-
+    
+    head = sol.reverseDL(head);
+    cout << "------------------------------------------" << endl;
+    
+    cout << "After Reverse" << endl;
+    sol.printList(head);
     return 0;
 }
