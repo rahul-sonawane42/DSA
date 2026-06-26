@@ -35,6 +35,20 @@ class Solution {
             newNode-> prev = temp;
             return head;
         }
+
+        Node* deleteLast(Node* head){
+            if (head == NULL || head->next == NULL){
+                return NULL;
+            }
+            Node* temp = head;
+            while (temp->next->next != NULL){
+                temp = temp->next;
+            }
+            delete temp->next;
+            temp->next = NULL;
+            return head;
+        }
+
         void printList(Node* head){
             Node* temp = head;
             while (temp != NULL){
@@ -55,9 +69,17 @@ int main() {
     sol.printList(head);
 
     sol.insertAtEnd(head,2);
+    sol.insertAtEnd(head,3);
+    sol.insertAtEnd(head,4);
     cout << "------------------------------------------" << endl;
     
     cout << "After Insertion" << endl;
+    sol.printList(head);
+
+    sol.deleteLast(head);
+    cout << "------------------------------------------" << endl;
+    
+    cout << "After Deletion" << endl;
     sol.printList(head);
 
     return 0;
